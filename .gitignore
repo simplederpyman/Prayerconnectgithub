@@ -21,3 +21,5 @@ Thumbs.db
 npm-debug.log*
 *.tsbuildinfo
 dist/
+vite.config.d.ts
+vite.config.js
