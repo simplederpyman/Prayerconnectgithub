@@ -22,7 +22,7 @@ const features = [
   {
     icon: BarChart2,
     title: 'Inzichten & rapporten',
-    description: 'Bekijk hoe de gemeente betroken is bij gebed met overzichtelijke statistieken.',
+    description: 'Bekijk hoe de gemeente betrokken is bij gebed met overzichtelijke statistieken.',
   },
   {
     icon: Users,

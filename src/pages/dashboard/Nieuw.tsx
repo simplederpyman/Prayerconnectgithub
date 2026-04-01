@@ -56,7 +56,7 @@ export function NieuwPage() {
         <Button variant="ghost" size="icon" onClick={() => navigate(-1)}>
           <ArrowLeft className="h-4 w-4" />
         </Button>
-        <h1 className="text-2xl font-bold text-gray-900">Nieuw gebedsmuur</h1>
+        <h1 className="text-2xl font-bold text-gray-900">Nieuw gebedsverzoek</h1>
       </div>
 
       <motion.div
