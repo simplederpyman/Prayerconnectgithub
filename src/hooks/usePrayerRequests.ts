@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import type { PrayerRequest } from '@/lib/types'
 
@@ -6,7 +6,7 @@ export function usePrayerRequests(churchId: string | null) {
   const [requests, setRequests] = useState<PrayerRequest[]>([])
   const [loading, setLoading] = useState(true)
 
-  const fetchRequests = async () => {
+  const fetchRequests = useCallback(async () => {
     if (!churchId) {
       setLoading(false)
       return
@@ -20,11 +20,11 @@ export function usePrayerRequests(churchId: string | null) {
 
     setRequests(data ?? [])
     setLoading(false)
-  }
+  }, [churchId])
 
   useEffect(() => {
     fetchRequests()
-  }, [churchId])
+  }, [fetchRequests])
 
   return { requests, loading, refetch: fetchRequests }
 }
@@ -33,7 +33,7 @@ export function usePublicPrayerRequests(churchId: string | null) {
   const [requests, setRequests] = useState<PrayerRequest[]>([])
   const [loading, setLoading] = useState(true)
 
-  const fetchRequests = async () => {
+  const fetchRequests = useCallback(async () => {
     if (!churchId) {
       setLoading(false)
       return
@@ -66,11 +66,11 @@ export function usePublicPrayerRequests(churchId: string | null) {
 
     setRequests(requestsWithCounts)
     setLoading(false)
-  }
+  }, [churchId])
 
   useEffect(() => {
     fetchRequests()
-  }, [churchId])
+  }, [fetchRequests])
 
   return { requests, loading, refetch: fetchRequests }
 }
