@@ -24,15 +24,23 @@ export function VerzoekenPage() {
 
   const handleCopy = async () => {
     if (!wallUrl) return
-    await navigator.clipboard.writeText(wallUrl)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+    try {
+      await navigator.clipboard.writeText(wallUrl)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      // Clipboard API not available; silently ignore
+    }
   }
 
   const handleShare = async () => {
     if (!wallUrl) return
     if (navigator.share) {
-      await navigator.share({ title: 'Gebedsmuur', url: wallUrl })
+      try {
+        await navigator.share({ title: 'Gebedsmuur', url: wallUrl })
+      } catch {
+        // User cancelled or share failed; silently ignore
+      }
     } else {
       handleCopy()
     }
