@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Search, Filter } from 'lucide-react'
+import { Search, ExternalLink, Copy, Share2, CheckCheck } from 'lucide-react'
 import { Input } from '@/components/ui/Input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select'
 import { PrayerRequestCard } from '@/components/PrayerRequestCard'
 import { Card, CardContent } from '@/components/ui/Card'
+import { Button } from '@/components/ui/Button'
 import { Heart } from 'lucide-react'
 import { usePrayerRequests } from '@/hooks/usePrayerRequests'
 import { useChurch } from '@/hooks/useChurch'
@@ -17,6 +18,33 @@ export function VerzoekenPage() {
   const [categoryFilter, setCategoryFilter] = useState<PrayerCategory | 'alle'>('alle')
   const [statusFilter, setStatusFilter] = useState<PrayerStatus | 'alle'>('alle')
   const [priorityFilter, setPriorityFilter] = useState<PrayerPriority | 'alle'>('alle')
+  const [copied, setCopied] = useState(false)
+
+  const wallUrl = church ? `${window.location.origin}/kerk/${church.slug}/gebedsmuur` : ''
+
+  const handleCopy = async () => {
+    if (!wallUrl) return
+    try {
+      await navigator.clipboard.writeText(wallUrl)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      // Clipboard API not available; silently ignore
+    }
+  }
+
+  const handleShare = async () => {
+    if (!wallUrl) return
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: 'Gebedsmuur', url: wallUrl })
+      } catch {
+        // User cancelled or share failed; silently ignore
+      }
+    } else {
+      handleCopy()
+    }
+  }
 
   const filtered = requests.filter((r) => {
     const matchesSearch =
@@ -32,9 +60,29 @@ export function VerzoekenPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900">Gebedsmuur</h1>
-        <p className="text-gray-600 mt-1">{requests.length} verzoeken in totaal</p>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">Gebedsmuur</h1>
+          <p className="text-gray-600 mt-1">{requests.length} verzoeken in totaal</p>
+        </div>
+        {church && (
+          <div className="flex items-center gap-2">
+            <a href={wallUrl} target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" size="sm" className="gap-2">
+                <ExternalLink className="h-4 w-4" />
+                Openen
+              </Button>
+            </a>
+            <Button variant="outline" size="sm" className="gap-2" onClick={handleCopy}>
+              {copied ? <CheckCheck className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
+              {copied ? 'Gekopieerd!' : 'Kopiëren'}
+            </Button>
+            <Button variant="outline" size="sm" className="gap-2" onClick={handleShare}>
+              <Share2 className="h-4 w-4" />
+              Delen
+            </Button>
+          </div>
+        )}
       </div>
 
       {/* Filters */}

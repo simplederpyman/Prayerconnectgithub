@@ -88,29 +88,6 @@ export function LandingPage() {
               </Link>
             </div>
           </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-16 relative"
-          >
-            <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 max-w-4xl mx-auto">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                {[
-                  { label: 'Gemeenten', value: '200+' },
-                  { label: 'Gebedsmuren', value: '1.200+' },
-                  { label: 'Gebeden', value: '15.000+' },
-                  { label: 'Beantwoord', value: '3.400+' },
-                ].map((stat) => (
-                  <div key={stat.label} className="text-center">
-                    <div className="text-3xl font-bold text-primary">{stat.value}</div>
-                    <div className="text-sm text-gray-500 mt-1">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
         </div>
       </section>
 

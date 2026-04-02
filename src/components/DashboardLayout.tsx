@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  Heart, LayoutDashboard, List, Plus, Calendar, Users,
+  Heart, LayoutDashboard, List, Plus, Users,
   BarChart2, Settings, Menu, X, LogOut, ChevronRight
 } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
@@ -14,7 +14,6 @@ const navItems = [
   { href: '/dashboard', label: 'Overzicht', icon: LayoutDashboard },
   { href: '/dashboard/verzoeken', label: 'Gebedsmuur', icon: List },
   { href: '/dashboard/nieuw', label: 'Nieuw verzoek', icon: Plus },
-  { href: '/dashboard/kalender', label: 'Kalender', icon: Calendar },
   { href: '/dashboard/team', label: 'Team', icon: Users },
   { href: '/dashboard/rapporten', label: 'Rapporten', icon: BarChart2 },
   { href: '/dashboard/instellingen', label: 'Instellingen', icon: Settings },
