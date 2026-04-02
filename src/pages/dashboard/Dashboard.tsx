@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Heart, List, Users, CheckCircle2, TrendingUp, ArrowRight } from 'lucide-react'
+import { Heart, List, Users, CheckCircle2, TrendingUp, ArrowRight, Copy, Check, ExternalLink, Share2 } from 'lucide-react'
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts'
@@ -25,6 +25,16 @@ export function DashboardPage() {
   const [stats, setStats] = useState({ total: 0, prayers: 0, members: 0, answered: 0 })
   const [recentRequests, setRecentRequests] = useState<PrayerRequest[]>([])
   const [weeklyData, setWeeklyData] = useState<WeeklyData[]>([])
+  const [copied, setCopied] = useState(false)
+
+  const wallUrl = church ? `${window.location.origin}/kerk/${church.slug}/gebedsmuur` : ''
+
+  const copyWallUrl = async () => {
+    if (!wallUrl) return
+    await navigator.clipboard.writeText(wallUrl)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
 
   useEffect(() => {
     if (!church) return
@@ -102,6 +112,59 @@ export function DashboardPage() {
         <StatsCard title="Leden" value={stats.members} icon={Users} color="bg-sky-500" delay={0.1} />
         <StatsCard title="Beantwoord" value={stats.answered} icon={CheckCircle2} color="bg-green-500" delay={0.15} />
       </div>
+
+      {/* Prayer wall link card */}
+      {church && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.18 }}
+        >
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Heart className="h-5 w-5 text-primary fill-purple-100" />
+                Jouw Gebedsmuur Link
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-gray-500 mb-3">
+                Deel deze link met gemeenteleden zodat zij gebedsverzoeken kunnen bekijken en mee kunnen bidden.
+              </p>
+              <div className="flex gap-2">
+                <div className="flex-1 bg-gray-50 rounded-xl px-3 py-2 text-sm text-gray-700 break-all font-mono">
+                  {wallUrl}
+                </div>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={copyWallUrl}
+                  title="Link kopiëren"
+                >
+                  {copied
+                    ? <Check className="h-4 w-4 text-green-500" />
+                    : <Copy className="h-4 w-4" />
+                  }
+                </Button>
+              </div>
+              <div className="flex flex-wrap gap-2 mt-3">
+                <Link to={`/kerk/${church.slug}/delen`}>
+                  <Button size="sm" className="gap-2">
+                    <Share2 className="h-3.5 w-3.5" />
+                    Delen
+                  </Button>
+                </Link>
+                <Link to={wallUrl} target="_blank">
+                  <Button variant="outline" size="sm" className="gap-2">
+                    <ExternalLink className="h-3.5 w-3.5" />
+                    Gebedsmuur openen
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Chart */}
