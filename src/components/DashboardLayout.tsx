@@ -37,7 +37,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
       <div className="px-4 pb-6">
         <Link to="/" className="flex items-center gap-2 font-bold text-xl text-primary">
           <Heart className="h-6 w-6 fill-primary" />
-          <span>PrayerConnect</span>
+          <span>SamenBidden</span>
         </Link>
         {church && (
           <p className="text-xs text-gray-500 mt-1 ml-8">{church.name}</p>
@@ -131,7 +131,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
           </button>
           <div className="flex items-center gap-2 font-bold text-primary">
             <Heart className="h-5 w-5 fill-primary" />
-            <span>PrayerConnect</span>
+            <span>SamenBidden</span>
           </div>
           <div className="w-10" />
         </header>

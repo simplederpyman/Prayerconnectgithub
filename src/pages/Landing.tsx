@@ -37,7 +37,7 @@ const features = [
   {
     icon: Smartphone,
     title: 'Mobiel-vriendelijk',
-    description: 'Gebruik PrayerConnect op telefoon, tablet of computer — altijd en overal.',
+    description: 'Gebruik SamenBidden op telefoon, tablet of computer — altijd en overal.',
   },
 ]
 
@@ -70,7 +70,7 @@ export function LandingPage() {
             </h1>
 
             <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-10">
-              PrayerConnect helpt gemeenten om gebedsmuren te beheren, leden te betrekken
+              SamenBidden helpt gemeenten om gebedsmuren te beheren, leden te betrekken
               en samen voor elkaar te bidden — op elke plek en elk moment.
             </p>
 
@@ -193,7 +193,7 @@ export function LandingPage() {
               Klaar om samen te bidden?
             </h2>
             <p className="text-gray-600 mb-8 text-lg">
-              Meld je gemeente gratis aan en ontdek hoe PrayerConnect gebed in je gemeente versterkt.
+              Meld je gemeente gratis aan en ontdek hoe SamenBidden gebed in je gemeente versterkt.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               {steps.slice(0, 2).map((step, i) => (

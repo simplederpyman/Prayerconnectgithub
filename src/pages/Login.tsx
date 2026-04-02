@@ -44,7 +44,7 @@ export function LoginPage() {
               <Heart className="h-7 w-7 text-primary fill-purple-200" />
             </div>
             <h1 className="text-2xl font-bold text-gray-900">Welkom terug</h1>
-            <p className="text-gray-600 mt-1">Log in bij PrayerConnect</p>
+            <p className="text-gray-600 mt-1">Log in bij SamenBidden</p>
           </div>
 
           <Card>

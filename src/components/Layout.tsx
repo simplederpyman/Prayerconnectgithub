@@ -22,7 +22,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <div className="flex items-center justify-between h-16">
             <Link to="/" className="flex items-center gap-2 font-bold text-xl text-primary">
               <Heart className="h-6 w-6 fill-primary" />
-              <span>PrayerConnect</span>
+              <span>SamenBidden</span>
             </Link>
 
             <nav className="hidden md:flex items-center gap-4">
@@ -96,9 +96,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-primary font-semibold">
             <Heart className="h-5 w-5 fill-primary" />
-            <span>PrayerConnect</span>
+            <span>SamenBidden</span>
           </div>
-          <p className="text-sm text-gray-500">© 2024 PrayerConnect. Gemaakt met ❤️ voor de gemeente.</p>
+          <p className="text-sm text-gray-500">© 2024 SamenBidden. Gemaakt met ❤️ voor de gemeente.</p>
         </div>
       </footer>
     </div>

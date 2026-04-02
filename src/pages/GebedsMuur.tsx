@@ -24,7 +24,7 @@ export function GebedsMuurPage() {
 
   // Load prayed IDs from localStorage
   useEffect(() => {
-    const stored = localStorage.getItem('prayerconnect_prayed')
+    const stored = localStorage.getItem('samenbidden_prayed')
     if (stored) {
       try {
         setPrayedIds(new Set(JSON.parse(stored)))
@@ -101,7 +101,7 @@ export function GebedsMuurPage() {
 
     newPrayed.add(requestId)
     setPrayedIds(newPrayed)
-    localStorage.setItem('prayerconnect_prayed', JSON.stringify([...newPrayed]))
+    localStorage.setItem('samenbidden_prayed', JSON.stringify([...newPrayed]))
 
     await supabase.from('prayer_engagements').insert({
       request_id: requestId,
