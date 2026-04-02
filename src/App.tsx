@@ -18,15 +18,23 @@ import { TeamPage } from '@/pages/dashboard/Team'
 import { RapportenPage } from '@/pages/dashboard/Rapporten'
 import { InstellingenPage } from '@/pages/dashboard/Instellingen'
 
+function ChurchProvider({ children }: { children: React.ReactNode }) {
+  const churchState = useChurchState()
+  return (
+    <ChurchContext.Provider value={churchState}>
+      {children}
+    </ChurchContext.Provider>
+  )
+}
+
 function AppProviders({ children }: { children: React.ReactNode }) {
   const authState = useAuthState()
-  const churchState = useChurchState()
 
   return (
     <AuthContext.Provider value={authState}>
-      <ChurchContext.Provider value={churchState}>
+      <ChurchProvider>
         {children}
-      </ChurchContext.Provider>
+      </ChurchProvider>
     </AuthContext.Provider>
   )
 }
