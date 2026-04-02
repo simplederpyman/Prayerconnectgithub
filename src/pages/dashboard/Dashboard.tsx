@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Heart, List, Users, CheckCircle2, TrendingUp, ArrowRight, Copy, Check, ExternalLink, Share2 } from 'lucide-react'
+import { Heart, List, Users, CheckCircle2, TrendingUp, ArrowRight, Copy, Check, ExternalLink, Share2, QrCode } from 'lucide-react'
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts'
@@ -9,6 +9,8 @@ import { StatsCard } from '@/components/StatsCard'
 import { PrayerRequestCard } from '@/components/PrayerRequestCard'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/Dialog'
+import { QRCodeDisplay } from '@/components/QRCodeDisplay'
 import { supabase } from '@/lib/supabase'
 import { useChurch } from '@/hooks/useChurch'
 import type { PrayerRequest } from '@/lib/types'
@@ -154,6 +156,25 @@ export function DashboardPage() {
                     Delen
                   </Button>
                 </Link>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button variant="outline" size="sm" className="gap-2">
+                      <QrCode className="h-3.5 w-3.5" />
+                      QR Code
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-sm">
+                    <DialogHeader>
+                      <DialogTitle>QR Code Gebedsmuur</DialogTitle>
+                    </DialogHeader>
+                    <div className="flex flex-col items-center gap-4 py-2">
+                      <QRCodeDisplay url={wallUrl} size={200} />
+                      <p className="text-sm text-gray-500 text-center">
+                        Scan deze QR code om de gebedsmuur te openen.
+                      </p>
+                    </div>
+                  </DialogContent>
+                </Dialog>
                 <Link to={wallUrl} target="_blank">
                   <Button variant="outline" size="sm" className="gap-2">
                     <ExternalLink className="h-3.5 w-3.5" />
