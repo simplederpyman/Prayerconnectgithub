@@ -26,7 +26,11 @@ export function NieuwPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!church || !title.trim()) return
+    if (!title.trim()) return
+    if (!church) {
+      setError('Geen kerk gevonden. Ververs de pagina en probeer opnieuw.')
+      return
+    }
     setLoading(true)
     setError('')
 
@@ -44,7 +48,8 @@ export function NieuwPage() {
 
     setLoading(false)
     if (err) {
-      setError('Er ging iets mis. Probeer het opnieuw.')
+      console.error('Fout bij opslaan gebedsverzoek:', err)
+      setError('Er ging iets mis bij het opslaan. Probeer het opnieuw.')
     } else {
       navigate('/dashboard/verzoeken')
     }
@@ -142,7 +147,7 @@ export function NieuwPage() {
                 <Button type="button" variant="outline" onClick={() => navigate(-1)}>
                   Annuleren
                 </Button>
-                <Button type="submit" disabled={loading || !title.trim()}>
+                <Button type="submit" disabled={loading || !title.trim() || !church}>
                   {loading ? 'Opslaan...' : 'Verzoek opslaan'}
                 </Button>
               </div>

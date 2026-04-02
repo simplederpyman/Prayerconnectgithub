@@ -35,13 +35,15 @@ export function PrayerForm({ churchId, onSuccess, onCancel, isPublic = false }: 
       description: description.trim() || null,
       author_name: authorName.trim() || null,
       category,
+      priority: 'normaal',
       visibility: 'openbaar',
       status: 'open',
     })
 
     setLoading(false)
     if (err) {
-      setError('Er ging iets mis. Probeer het opnieuw.')
+      console.error('Fout bij indienen gebedsverzoek:', err)
+      setError('Er ging iets mis bij het indienen. Probeer het opnieuw.')
     } else {
       setTitle('')
       setDescription('')
