@@ -229,7 +229,7 @@ export function GebedsMuurPage() {
               >
                 <Card>
                   <CardHeader>
-                    <CardTitle>Gebedsmuur indienen</CardTitle>
+                    <CardTitle>Gebedsverzoek indienen</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <PrayerForm
@@ -258,7 +258,7 @@ export function GebedsMuurPage() {
                   style={{ backgroundColor: primaryColor }}
                 >
                   <Plus className="h-5 w-5" />
-                  Gebedsmuur indienen
+                  Gebedsverzoek indienen
                 </Button>
               </motion.div>
             )}
@@ -268,7 +268,7 @@ export function GebedsMuurPage() {
         {/* Stats bar */}
         <div className="flex items-center justify-between mb-6">
           <h2 className="font-semibold text-gray-700">
-            {requests.length} gebedsmuur{requests.length !== 1 ? 'en' : ''}
+            {requests.length} gebedsverzoek{requests.length !== 1 ? 'en' : ''}
           </h2>
           <div className="flex items-center gap-1 text-sm text-gray-500">
             <Heart className="h-4 w-4 text-primary" />
@@ -282,8 +282,8 @@ export function GebedsMuurPage() {
         {requests.length === 0 ? (
           <div className="text-center py-16">
             <Heart className="h-12 w-12 text-gray-200 mx-auto mb-4" />
-            <p className="text-gray-500 text-lg">Nog geen gebedsmuur</p>
-            <p className="text-gray-400 text-sm mt-1">Wees de eerste die een gebedsmuur indient</p>
+            <p className="text-gray-500 text-lg">Nog geen gebedsverzoeken</p>
+            <p className="text-gray-400 text-sm mt-1">Wees de eerste die een gebedsverzoek indient</p>
           </div>
         ) : (
           <div className="space-y-4">
